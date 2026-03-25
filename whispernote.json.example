@@ -1,0 +1,4 @@
+{
+  "asr_model": "mlx-community/whisper-tiny",
+  "diarization_model": "pyannote/speaker-diarization-community-1"
+}

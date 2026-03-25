@@ -1,9 +1,11 @@
 import mlx_whisper
 from typing import List, Dict
 
+from .defaults import DEFAULT_ASR_MODEL
+
 def run_transcription(
     audio_path: str,
-    model_path: str = "mlx-community/whisper-large-v3-mlx"
+    model_path: str = DEFAULT_ASR_MODEL,
 ) -> List[Dict]:
     """Runs mlx_whisper and flattens the output into a list of word dictionaries."""
     print(f"Running MLX Whisper transcription with {model_path}...")
