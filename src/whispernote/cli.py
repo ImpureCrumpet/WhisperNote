@@ -1,11 +1,12 @@
 import argparse
 import os
 import subprocess
+import sys
 import tempfile
 
 from dotenv import load_dotenv
 
-from .config import load_models_config
+from .config import CONFIG_FILENAME, load_models_config
 from .defaults import DEFAULT_ASR_MODEL, DEFAULT_DIARIZATION_MODEL
 from .merge import assign_speakers_to_words
 from .export import export_srt, export_txt, export_json, export_markdown
@@ -49,31 +50,40 @@ def main():
         "--config",
         default=None,
         help=(
-            "Path to whispernote.json (model overrides). "
-            "If omitted, ./whispernote.json or ~/.config/whispernote/config.json is used when present."
+            f"Path to {CONFIG_FILENAME} (basename must be exactly that). "
+            "If omitted, the first existing file is used: ./whispernote.json, "
+            "then ~/.config/whispernote/whispernote.json."
         ),
     )
     parser.add_argument(
-        "--asr-model",
+        "-ma",
+        "--model-asr",
         default=None,
         dest="asr_model",
+        metavar="ID_OR_PATH",
         help=(
-            f"MLX Whisper Hub repo id or local path (default: {DEFAULT_ASR_MODEL!r}). "
-            "Overrides config file."
+            f"MLX Whisper Hub id or local dir, path_or_hf_repo (default: {DEFAULT_ASR_MODEL!r}). "
+            "Overrides config."
         ),
     )
     parser.add_argument(
-        "--diarization-model",
+        "-md",
+        "--model-diarization",
         default=None,
         dest="diarization_model",
+        metavar="ID_OR_PATH",
         help=(
-            f"pyannote pipeline Hub id or local path (default: {DEFAULT_DIARIZATION_MODEL!r}). "
-            "Overrides config file."
+            f"pyannote diarization pipeline Hub id or local path (default: {DEFAULT_DIARIZATION_MODEL!r}). "
+            "Overrides config."
         ),
     )
     args = parser.parse_args()
 
-    cfg = load_models_config(args.config)
+    try:
+        cfg = load_models_config(args.config)
+    except ValueError as e:
+        print(str(e), file=sys.stderr)
+        sys.exit(2)
     asr_model = args.asr_model or cfg.get("asr_model") or DEFAULT_ASR_MODEL
     diarization_model = (
         args.diarization_model or cfg.get("diarization_model") or DEFAULT_DIARIZATION_MODEL

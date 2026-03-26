@@ -1,6 +1,10 @@
 import os
 from typing import Any, List
 
+# pyannote.audio optional Hub telemetry: default off unless user set PYANNOTE_METRICS_ENABLED
+# (see README — upstream docs: https://github.com/pyannote/pyannote-audio#telemetry).
+os.environ.setdefault("PYANNOTE_METRICS_ENABLED", "0")
+
 import torch
 from pyannote.audio import Pipeline
 
