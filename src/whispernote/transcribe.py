@@ -1,3 +1,4 @@
+"""MLX Whisper ASR (word timestamps). Model path: `.skills/_skills/whispernote-models/SKILL.md`."""
 import mlx_whisper
 from typing import List, Dict
 

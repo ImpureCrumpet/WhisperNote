@@ -1,4 +1,7 @@
-"""Optional JSON model overrides (HF Hub ids or local paths)."""
+"""Optional JSON model overrides (HF Hub ids or local paths).
+
+Discovery rules and keys: `.skills/_skills/whispernote-models/SKILL.md`; manifest `.skills/_index.md`.
+"""
 
 from __future__ import annotations
 

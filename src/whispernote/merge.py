@@ -1,3 +1,4 @@
+"""Merge diarization segments with word-level ASR (midpoint rule). See `.skills/_skills/whispernote-internals/SKILL.md`."""
 from dataclasses import dataclass
 from typing import List, Dict
 

@@ -209,3 +209,6 @@ __marimo__/
 
 #Temp Files
 ref/
+
+# UV lock (library — not pinned)
+uv.lock

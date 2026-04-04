@@ -1,3 +1,6 @@
+"""Transcript exporters (`srt`, `txt`, `json`, `md`).
+
+Format rules: `.skills/_skills/whispernote-export-formats/SKILL.md`."""
 import json
 from typing import List
 from dataclasses import asdict

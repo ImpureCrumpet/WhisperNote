@@ -1,3 +1,4 @@
+# AI/agent procedures and the skill manifest live under .skills/ (see AGENTS.md, .skills/_index.md).
 [build-system]
 requires = ["setuptools>=61", "wheel"]
 build-backend = "setuptools.build_meta"

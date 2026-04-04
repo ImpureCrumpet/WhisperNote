@@ -4,6 +4,13 @@ Local diarized transcription on **Apple Silicon** combining [MLX Whisper](https:
 
 Word-level timestamps are merged with diarization using a midpoint rule, then exported as `srt`, `txt`, `json`, or `md`.
 
+## Documentation for agents and contributors
+
+- **[`AGENTS.md`](AGENTS.md)** — agent contract and agnostic skills policy for this repo.
+- **[`.skills/_index.md`](.skills/_index.md)** — skill manifest (authoring helpers plus WhisperNote-specific skills: Hugging Face setup, pipeline internals, export formats, testing, models).
+
+End-user setup and options remain in this README; skills hold **concise, agent-oriented** checklists that track [`pyproject.toml`](pyproject.toml), [`scripts/`](scripts/), and [`src/whispernote/`](src/whispernote/).
+
 ## Prerequisites
 
 - **Python 3.10 or newer** — You need a working Python before you can create a virtual environment or run `pip install`. That matches **`requires-python`** in [`pyproject.toml`](pyproject.toml) (`>=3.10`). Check with `python3 --version` (or `python --version` if that points to Python 3).

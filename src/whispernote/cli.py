@@ -1,3 +1,8 @@
+"""WhisperNote CLI entry point (see `whispernote` in pyproject.toml).
+
+Pipeline and lazy-import behavior for assistants: `.skills/_skills/whispernote-internals/SKILL.md`
+and manifest `.skills/_index.md`.
+"""
 import argparse
 import os
 import subprocess

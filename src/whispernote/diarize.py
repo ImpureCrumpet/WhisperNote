@@ -1,3 +1,6 @@
+"""pyannote diarization pipeline (Hub id or local path).
+
+HF token and gating: `.skills/_skills/whispernote-hf-setup/SKILL.md`."""
 import os
 from typing import Any, List
 
