@@ -210,5 +210,4 @@ __marimo__/
 #Temp Files
 ref/
 
-# UV lock (library — not pinned)
-uv.lock
+# UV lock — tracked for reproducible installs (do NOT add uv.lock here)

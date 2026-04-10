@@ -16,10 +16,10 @@ Use when running the suite, adding tests, or debugging CI/local test failures.
 
 ## How to run
 
-From the **repository root**, with dev extras installed (`pip install -e ".[dev]"` per [README](../../../README.md)):
+From the **repository root**, with dev extras installed (`uv sync --extra dev`):
 
 ```bash
-pytest
+uv run pytest
 ```
 
 [`pyproject.toml`](../../../pyproject.toml) sets `[tool.pytest.ini_options]`:

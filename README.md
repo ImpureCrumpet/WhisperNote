@@ -13,7 +13,9 @@ End-user setup and options remain in this README; skills hold **concise, agent-o
 
 ## Prerequisites
 
-- **Python 3.10 or newer** — You need a working Python before you can create a virtual environment or run `pip install`. That matches **`requires-python`** in [`pyproject.toml`](pyproject.toml) (`>=3.10`). Check with `python3 --version` (or `python --version` if that points to Python 3).
+- **[`uv`](https://docs.astral.sh/uv/)** — WhisperNote uses `uv` for dependency management and virtual-environment creation. Install it with `curl -LsSf https://astral.sh/uv/install.sh | sh` or `brew install uv`.
+
+- **Python 3.10 or newer** — `uv` will install a compatible interpreter automatically if needed (the repo pins **3.12** via [`.python-version`](.python-version)). That matches **`requires-python`** in [`pyproject.toml`](pyproject.toml) (`>=3.10`).
 
 - **`ffmpeg`** — WhisperNote shells out to `ffmpeg` to normalize input to 16 kHz mono PCM before ASR and diarization. Install it however you like; it must be on your `PATH`.
 
@@ -23,16 +25,12 @@ End-user setup and options remain in this README; skills hold **concise, agent-o
 
 ## Quick start
 
-#### 1. **Install the project in a virtual environment**
+#### 1. **Install the project**
 
-   A virtual environment keeps WhisperNote’s dependencies (MLX, PyTorch, pyannote, etc.) separate from your system Python so versions do not clash with other projects.
-
-   This repo’s **[`pyproject.toml`](pyproject.toml)** is the package manifest: it declares the **`whispernote`** distribution, **Python ≥ 3.10**, runtime **dependencies** (`mlx-whisper`, `pyannote.audio`, `torch`, `python-dotenv`), optional **`dev`** extras (`pytest`), the **`whispernote`** console script entry point, and **`src/`** layout. `pip install -e ".[dev]"` performs an **editable** install (code changes are picked up without reinstalling) and pulls those dependencies from PyPI.
+   `uv sync` creates a virtual environment (`.venv`), installs a matching Python if needed, and resolves all dependencies from the committed [`uv.lock`](uv.lock) for reproducible builds. The `--extra dev` flag pulls in the optional `dev` extras (e.g. `pytest`).
 
    ```bash
-   python -m venv .venv
-   source .venv/bin/activate
-   pip install -e ".[dev]"
+   uv sync --extra dev
    ```
 
 #### 2. **Hugging Face access**
@@ -56,7 +54,7 @@ End-user setup and options remain in this README; skills hold **concise, agent-o
    Example: transcribe a local recording and write SubRip subtitles to the **current working directory**.
 
    ```bash
-   whispernote ~/Documents/meeting.m4a --format srt
+   uv run whispernote ~/Documents/meeting.m4a --format srt
    ```
 
    That normalizes the audio, runs diarization and MLX Whisper, merges speakers, and writes **`meeting.srt`** in the **current working directory** (same base name as the input file, extension from `--format`). If you omit `--format`, the default is **`srt`**.
@@ -164,10 +162,10 @@ Browse the Hugging Face **[mlx-community Whisper collection](https://huggingface
 
 ## Tests
 
-From the repository root, with dev dependencies installed (`pip install -e ".[dev]"` or equivalent), run:
+From the repository root (after `uv sync --extra dev`):
 
 ```bash
-pytest
+uv run pytest
 ```
 
 [`pyproject.toml`](pyproject.toml) sets **`pythonpath = ["src"]`** for pytest so the `whispernote` package resolves from the **`src/`** layout without setting `PYTHONPATH` by hand. You still need the runtime stack available where tests import it (e.g. anything that loads `diarize` pulls in PyTorch / pyannote).

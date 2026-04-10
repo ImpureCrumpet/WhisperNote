@@ -1,6 +1,6 @@
 # WhisperNote — agent notes
 
-**WhisperNote** is a local CLI for diarized transcription on **Apple Silicon**: MLX Whisper for ASR and pyannote.audio for speaker diarization. Package lives under `src/whispernote/`; install and run via [`pyproject.toml`](pyproject.toml) (`whispernote` entry point). Tests: `pytest` with `pythonpath = ["src"]`. For user-facing setup and flags, see [`README.md`](README.md).
+**WhisperNote** is a local CLI for diarized transcription on **Apple Silicon**: MLX Whisper for ASR and pyannote.audio for speaker diarization. Package lives under `src/whispernote/`; install via `uv sync --extra dev` and run with `uv run whispernote` (see [`pyproject.toml`](pyproject.toml)). Tests: `uv run pytest` with `pythonpath = ["src"]`. For user-facing setup and flags, see [`README.md`](README.md).
 
 ## Skills (agnostic / multi-ecosystem)
 
