@@ -4,6 +4,8 @@ Local diarized transcription on **Apple Silicon** combining [MLX Whisper](https:
 
 Word-level timestamps are merged with diarization using a midpoint rule, then exported as `srt`, `txt`, `json`, or `md`.
 
+**Current version:** 0.2.7 — canonical `version` field in [`pyproject.toml`](pyproject.toml).
+
 ## Documentation for agents and contributors
 
 - **[`AGENTS.md`](AGENTS.md)** — agent contract and agnostic skills policy for this repo.

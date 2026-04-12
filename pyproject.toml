@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "whispernote"
-version = "0.1.0"
+version = "0.2.7"
 description = "Diarized transcription with MLX Whisper and pyannote on Apple Silicon"
 readme = "README.md"
 license = { text = "MIT" }
